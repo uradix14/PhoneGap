@@ -18,6 +18,8 @@
             uploadFile(mediaFiles[i]);
         }
     }
+    
+   
 
     // Called if something bad happens.
     //
@@ -25,14 +27,19 @@
         var msg = 'An error occurred during capture: ' + error.code;
         navigator.notification.alert(msg, null, 'Uh oh!');
     }
-
+    
+   </script>
+    <script type="text/javascript" charset="utf-8">
     // A button will call this function
     //
     function captureVideo() {
         // Launch device video recording application,
         // allowing user to capture up to 2 video clips
-        navigator.device.capture.captureVideo(captureSuccess, captureError, {limit: 2});
+        navigator.device.capture.captureVideo(captureSuccess, captureError, {limit: 1});
     }
+    
+     </script>
+     <script type="text/javascript" charset="utf-8">
 
     // Upload files to server
     function uploadFile(mediaFile) {
@@ -67,7 +74,7 @@
 			<div data-role="content">
 				<h3>Content</h3>
 				<p>
-					<button onclick="captureVideo()">Capture Video</button> <br>
+					<a href="#" data-role="button" ontap"captureVideo();">
 				</p>
 			</div>
 			<!-- /content -->
