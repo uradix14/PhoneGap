@@ -11,14 +11,9 @@
   <script type="text/javascript" src="js/jqm/jquery.mobile.js"></script>
   <script type="text/javascript" src="js/my.js"></script>
   <script src="phonegap.js"></script>
+  <script src="cordova.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 
-  <!-- User-generated css -->
-  <style>
-    
-  </style>
-
-  <!-- User-generated js -->
 
 </head>
 <body>
@@ -30,52 +25,29 @@
       </div>
       <div data-role="content">
           <div data-controltype="htmlblock">
-              <script>
-              function captureSuccess(mediaFiles) {
-      var i, len;
-      for (i = 0, len = mediaFiles.length; i & lt; len; i += 1) {
-          uploadFile(mediaFiles[i]);
-      }
-  }
-  
-  // Called if something bad happens.
-  //
-  
-  
-  function captureError(error) {
-      var msg = 'An error occurred during capture: ' + error.code;
-      navigator.notification.alert(msg, null, 'Uh oh!');
-  }
-  
-  // A button will call this function
-  //
-  
-  
-  function captureVideo() {
-      // Launch device video recording application,
-      // allowing user to capture up to 2 video clips
-      navigator.device.capture.captureVideo(captureSuccess, captureError, {
-          limit: 1
-      });
-  }
-  
-  // Upload files to server
-  
-  
-  function uploadFile(mediaFile) {
-      var ft = new FileTransfer(),
-          path = mediaFile.fullPath,
-          name = mediaFile.name;
-  
-      ft.upload(path, "http://my.domain.com/upload.php", function(result) {
-          console.log('Upload success: ' + result.responseCode);
-          console.log(result.bytesSent + ' bytes sent');
-      }, function(error) {
-          console.log('Error uploading file ' + path + ': ' + error.code);
-      }, {
-          fileName: name
-      });
-  }
+             // Called when capture operation is finished
+        //
+        function captureSuccess(mediaFiles) {
+            var i, len;
+            for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+                uploadFile(mediaFiles[i]);
+            }
+        }
+
+        // Called if something bad happens.
+        //
+        function captureError(error) {
+            var msg = 'An error occurred during capture: ' + error.code;
+            navigator.notification.alert(msg, null, 'Uh oh!');
+        }
+
+        // A button will call this function
+        //
+        function captureVideo() {
+            // Launch device video recording application,
+            // allowing user to capture up to 2 video clips
+            navigator.device.capture.captureVideo(captureSuccess, captureError, {limit: 2});
+        }
               </script>
               <button ontap="captureVideo();">
                   Capture Video
