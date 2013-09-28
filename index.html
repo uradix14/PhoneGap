@@ -16,6 +16,17 @@
   <script src="js/phonegapalpha.js"></script>
   <script type="text/javascript" src="phonegap.js"></script>
   <script>
+   document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+        }
+
+        function showAlert() {
+            navigator.notification.alert("Cordova is working");
+        }
+
+      $(document).on('pageinit', '#page1', function() { });
+      
   // Called when capture operation is finished
     //
     function captureSuccess(mediaFiles) {
