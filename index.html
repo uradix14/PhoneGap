@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <link rel="stylesheet" type="text/css" href="css/jqm.theme.css" />
+  <title>phonegapAlpha</title>
+  <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" src="js/jqm/jquery.mobile.js"></script>
+  <script type="text/javascript" src="js/my.js"></script>
+  <script src="phonegap.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+
+  <!-- User-generated css -->
+  <style>
+    
+  </style>
+
+  <!-- User-generated js -->
+  <script>
+    $(function() {
+        $(function() {
+        
+        //Insert code here
+        
+        });
+    });
+  </script>
+</head>
+<body>
+  <div data-role="page" data-control-title="Home" id="page1">
+      <div data-theme="a" data-role="header">
+          <h3>
+              Home
+          </h3>
+      </div>
+      <div data-role="content">
+          <div data-controltype="htmlblock">
+              <script>
+              function captureSuccess(mediaFiles) {
+      var i, len;
+      for (i = 0, len = mediaFiles.length; i & lt; len; i += 1) {
+          uploadFile(mediaFiles[i]);
+      }
+  }
+  
+  // Called if something bad happens.
+  //
+  
+  
+  function captureError(error) {
+      var msg = 'An error occurred during capture: ' + error.code;
+      navigator.notification.alert(msg, null, 'Uh oh!');
+  }
+  
+  // A button will call this function
+  //
+  
+  
+  function captureVideo() {
+      // Launch device video recording application,
+      // allowing user to capture up to 2 video clips
+      navigator.device.capture.captureVideo(captureSuccess, captureError, {
+          limit: 1
+      });
+  }
+  
+  // Upload files to server
+  
+  
+  function uploadFile(mediaFile) {
+      var ft = new FileTransfer(),
+          path = mediaFile.fullPath,
+          name = mediaFile.name;
+  
+      ft.upload(path, "http://my.domain.com/upload.php", function(result) {
+          console.log('Upload success: ' + result.responseCode);
+          console.log(result.bytesSent + ' bytes sent');
+      }, function(error) {
+          console.log('Error uploading file ' + path + ': ' + error.code);
+      }, {
+          fileName: name
+      });
+  }
+              </script>
+              <button onclick="captureVideo();">
+                  Capture Video
+              </button>
+          </div>
+      </div>
+      <div data-role="tabbar" data-iconpos="top" data-theme="a">
+          <ul>
+              <li>
+                  <a href="#page1" data-transition="fade" data-theme="" data-icon="home">
+                      One
+                  </a>
+              </li>
+              <li>
+                  <a href="#page2" data-transition="fade" data-theme="" data-icon="star">
+                      Two
+                  </a>
+              </li>
+              <li>
+                  <a href="#" data-transition="fade" data-theme="" data-icon="info">
+                      Three
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="RecordVideo" id="page2">
+      <div data-theme="a" data-role="header">
+          <h3>
+              Record Video
+          </h3>
+      </div>
+      <div data-role="content">
+      </div>
+      <div data-role="tabbar" data-iconpos="top" data-theme="a">
+          <ul>
+              <li>
+                  <a href="#page1" data-transition="fade" data-theme="" data-icon="home">
+                      One
+                  </a>
+              </li>
+              <li>
+                  <a href="#page2" data-transition="fade" data-theme="" data-icon="star">
+                      Two
+                  </a>
+              </li>
+              <li>
+                  <a href="#" data-transition="fade" data-theme="" data-icon="info">
+                      Three
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <script type="text/javascript">
+    app.initialize();
+  </script>
+</body>
+</html>
